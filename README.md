@@ -3,16 +3,13 @@
 # appium-boilerplate
 
 > **NOTE:**
-> This boilerplate is for Webdriver V5, if you need a boilerplate for V4 please click [here](https://github.com/webdriverio/appium-boilerplate/tree/v4)
+> This boilerplate is for Webdriver V5
 
 Boilerplate project to run Appium tests together with WebdriverIO for:
 
-- iOS/Android Native Apps
-- iOS/Android Hybrid Apps
-- Android Chrome and iOS Safari browser ([check here](./README.md#automating-chrome-or-safari))
+- Android Native App - Astro Syok
 
-> This boilerplate uses the WebdriverIO native demo app which can be found [here](https://github.com/webdriverio/native-demo-app).
-> The releases can be found and downloaded [here](https://github.com/webdriverio/native-demo-app/releases).
+> The apk of the app can be found in the following location : https://apkpure.com/syok-free-radio-videos-and-podcasts/net.amp.era and also available in Google Playstore and Apple Appstore
 > Before running tests, please create a `./apps` directory, download the app and move the zip files into that directory
 
 > **Note:**
@@ -23,33 +20,33 @@ Boilerplate project to run Appium tests together with WebdriverIO for:
 ## Based on
 This boilerplate is currently based on:
 - **WebdriverIO:** `5.7.#`
-- **Appium:** `1.12.0`
+- **Appium:** `1.14.0`
+- **Allure:** TBD
+- **NodeJs:**  v8.11.3
 
 
 ## Installing Appium on a local machine
 See [Installing Appium on a local machine](./docs/APPIUM.md)
 
-## Setting up Android and iOS on a local machine
-To setup your local machine to use an Android emulator and an iOS simulator see [Setting up Android and iOS on a local machine](./docs/ANDROID_IOS_SETUP.md)
+## Setting up Android- Android mobile with version 9 has been used for the test.
 
 ## Quick start
-Choose one of the following options:
 
-1. Clone the git repo — `git clone https://github.com/webdriverio/appium-boilerplate.git`
+1. Clone the git repo — `git clone https://TBD`
 
 2. Then copy the files to your project directory (all files in `/tests` and the `wdio.conf`-files in the `config`-folder)
 
-3. Merge project dev dependencies with your projects dev dependencies in your `package.json`
+3. Merge project dev dependencies with your projects dev dependencies in the `package.json`
 
-4. merge the scripts to your `package.json` scripts
+4. merge the scripts to `package.json` scripts
 
 5. Run the tests for iOS with `npm run ios.app` and for Android with `npm run android.app`
 
 ## Config
-This boilerplate uses a specific config for iOS and Android, see [configs](./config/) and are based on `wdio.shared.conf.js`.
-This shared config holds all the defaults so the iOS and Android configs only need to hold the capabilities and specs that are needed for running on iOS and or Android (app or browser).
+This boilerplate uses a specific config for Android, see [configs](./config/) and are based on `wdio.conf.js`.
+This config holds all the defaults so the Android configs only need to hold the capabilities and specs that are needed for running on Android.
 
-> **NEW:** The new `@wdio/appium-service` is now also integrated in this boilerplate so you don't need to start an Appium server yourself, WebdriverIO will do that for you.
+> **Note:** The `@wdio/appium-service` has been integrated in this boilerplate so you don't need to start an Appium server yourself, WebdriverIO will do that for you.
 
 Since we do not have Appium installed as part of this package, this has been configured to use the global Appium installation. This is configured in wdio.shared.conf.js
 ```
@@ -58,28 +55,14 @@ appium: {
 },
 ```
 
-## Locator strategy for native apps
-The locator strategy for this boilerplate is to use `accessibilityID`'s, see also the [WebdriverIO docs](http://webdriver.io/guide/usage/selectors.html#Accessibility-ID) or this newsletter on [AppiumPro](https://appiumpro.com/editions/20).
-`accessibilityID`'s make it easy to script once and run on iOS and Android because most of the apps already have some `accessibilityID`'s.
+## Locator strategy for Syok app
+The locator strategy for this boilerplate is to use `xpath`'s and 'id's, see also the [WebdriverIO docs](http://webdriver.io/guide/usage/selectors.html#Accessibility-ID) or this newsletter on [AppiumPro](https://appiumpro.com/editions/20).
+xpath has been used where resource ids did not work. [though xpath is not the best way]
 
-If `accessibilityID`'s can't be used and for example only XPATH is only available then the following setup could be used to make cross-platform selectors
+In few cases where xpath could not be clicked co-ordinates have been used. A function called custom-tap has been define in the utility-function
 
-```js
-const SELECTORS = {
-    WEB_VIEW_SCREEN: browser.isAndroid
-        ? '*//android.webkit.WebView'
-        : '*//XCUIElementTypeWebView',
-};
-```
 
-## Automating Chrome or Safari
-Mobile web automation is almost the same as writing tests for desktop browsers. The only difference can be found in the configuration that needs to be used.
-Click [here](./config/wdio.ios.browser.conf.js) to find the config for iOS Safari and [here](./config/wdio.android.browser.conf.js) for Android Chrome.
-For Android be sure that the lastest version of Chrome is installed, see also [here](./docs/FAQ.md#i-get-the-error-no-chromedriver-found-that-can-automate-chrome-).
-
-For this boilerplate the testcases from the [jasmine-boilerplte](https://github.com/webdriverio/jasmine-boilerplate), created by [Christian Bromann](https://github.com/christian-bromann), are used.
-
-## Cloud vendors
+## Cloud vendors - TBD
 
 ### Sauce Labs Real Device Cloud
 This boilerplate now also provides a setup for testing with the Real Device Cloud (RDC) of Sauce Labs. Please check the [SauceLabs](./config/saucelabs)-folder to see the setup for iOS and Android.
